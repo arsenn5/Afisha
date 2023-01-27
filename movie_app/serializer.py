@@ -25,9 +25,7 @@ class MovieSerializer(serializers.ModelSerializer):
 class ReviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = 'id text stars'.split()
-        tag_list = serializers.SerializerMethodField()
-
+        fields = 'id text movie'.split()
 
 class MovieReviewSerializer(serializers.ModelSerializer):
     director = DirectorSerializer().fields.get("name")
@@ -48,4 +46,4 @@ class MovieReviewSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = 'id movie'.split()
+        fields = 'id text stars movie'.split()
