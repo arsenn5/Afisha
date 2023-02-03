@@ -1,5 +1,6 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from movie_app.serializer import *
@@ -48,6 +49,7 @@ def director_detail_view(request, id):
 
 @api_view(["GET", 'POST'])
 def movie_view(request):
+    print(request.user)
     if request.method == 'GET':
         movie = Movie.objects.all()
         serializer = MovieSerializer(movie, many=True)
@@ -96,8 +98,8 @@ def movie_detail_view(request, id):
 
 @api_view(['GET', 'POST'])
 def review_view(request):
-    review = Review.objects.all()
     if request.method == 'GET':
+        review = Review.objects.all()
         serializer = ReviewSerializer(review, many=True)
         return Response(data=serializer.data)
     elif request.method == 'POST':
