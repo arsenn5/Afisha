@@ -27,18 +27,3 @@ class RegistrationCreateAPIView(APIView):
         serializer.is_valid(raise_exception=True)
         User.objects.create_user(**serializer.validated_data)
         return Response(status=status.HTTP_201_CREATED)
-# class LoginAPIView(APIView):
-#     def post(self, request):
-#         serializer = UserCreateSerializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         User.objects.create_user(**serializer.validated_data)
-#         return Response(status=status.HTTP_201_CREATED)
-#
-#
-# class RegistrationAPIView(APIView):
-#     def post(self, request):
-#         serializer = UserValidateSerializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         User.objects.get(**serializer.validated_data)
-#         return Response(status=status.HTTP_403_FORBIDDEN,
-#                         data={'errors_massage': 'user not found'})
